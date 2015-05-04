@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<style>
+.done-true {
+	text-decoration: line-through;
+	color: grey;
+}
+</style>
+<fieldset ng-controller="BiodataCtrl as vm">
+<legend>MY WEB </legend>
+<h2>Biodata Pegawai</h2>
+<div >
+	<span>{{vm.remaining()}} of {{vm.tombols.length}} remaining</span>
+	[<a href="" ng-click="vm.archive()">archive</a> ]
+
+	<!-- <ul class="unstyled">
+		<li ng-repeat="todo in vm.todos">
+			<input type="checkbox" ng-model="todo.done"> <br>
+			<span class="done-{{todo.done}}">
+				nama:{{todo.nam	a}}<br>
+				alamat:{{todo.alamat}}
+			</span>
+		</li>
+	</ul> -->
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+
+					<th style="width:5%;">Check</th>
+					<th>nama</th>
+					<th>telp</th>
+					<th>gender</th>
+					<th>jabatan</th>
+					<th>aksi</th>
+
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="biodata in vm.biodatas track by $index">
+					<td><input type="checkbox" ng-model="biodata.done"></td>
+					<td>{{biodata.nama}}</td>
+					<td>{{biodata.telp}}</td>
+					<td>{{biodata.gender}}</td>
+					<td>{{biodata.jabatan}}</td>
+					<td>
+						<a class="btn btn-warning" ng-click="vm.edit($index)">E</a>
+						<a class="btn btn-danger" ng-click="vm.remove(biodata)">D</a>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	<form class="form-horizontal"  role="form">
+		<div class="form-group">
+			<label class="control-label col-sm-1" for="nama">nama:</label>
+			<div class="col-sm-3">
+				<input type="text"  class="form-control" ng-model="vm.form.nama"  >
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-1">telp:</label>
+			<div class="col-sm-3">
+				<textarea type="text" class="form-control" ng-model="vm.form.telp"></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-1">gender:</label>
+			<div class="col-sm-3">
+			<textarea type="text" class="form-control" ng-model="vm.form.gender"></textarea>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-sm-1">jabatan:</label>
+		<div class="col-sm-3">
+			<textarea type="text" class="form-control" ng-model="vm.form.jabatan"></textarea>
+		</div>
+	</div>
+
+	<!--<div class="form-group">
+		<label class="control-label col-sm-1">Pendidikan:</label>
+		<div class="col-sm-3">
+			<textarea type="text" class="form-control" ng-model="vm.form.pendidikan"></textarea>
+		</div>
+	</div>-->
+
+		<!--<div class="form-group">
+			<label class="control-label col-sm-1">alamat:</label>
+			<div class="col-sm-3">
+				<textarea type="text" class="form-control" ng-model="vm.form.alamat"></textarea>
+			</div>
+		</div>-->
+
+		<!--<div class="form-group">
+			<label class="control-label col-sm-1">no.tlp:</label>
+			<div class="col-sm-3">
+				<textarea type="text" class="form-control" ng-model="vm.form.no_tlp"></textarea>
+			</div>
+		</div>-->
+
+		<div class="form-group">
+			<label class="control-label col-sm-1"></label>
+			<div class="col-sm-3">
+				<button class="btn btn-default" ng-click="vm.addBiodata()" ng-disabled="vm.btnSimpan == false">Simpan</button>
+				<button class="btn btn-default" ng-click="vm.update()"  ng-disabled="vm.btnUbah == false">Ubah</button>
+
+			</div>
+		</div>
+
+	</form>
+</div>
+</fieldset>
